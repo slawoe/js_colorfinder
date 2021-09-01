@@ -14,7 +14,13 @@ function randomColors() {
     const randomColor = generateHex();
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
+    checkTextContrast(randomColor, hexText);
   });
+}
+
+function checkTextContrast(color, text) {
+  const luminance = chroma(color).luminance();
+  luminance > 0.5 ? (text.style.color = "black") : (text.style.color = "white");
 }
 
 randomColors();
