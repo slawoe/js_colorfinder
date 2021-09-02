@@ -9,9 +9,15 @@ html {
 body {
   color: rgb(51, 51, 51);
 }
+path,
+i,
+svg {
+  pointer-events: none;
+}
 .colors {
   min-height: 80vh;
   display: flex;
+  color: rgb(212, 212, 212);
 }
 .color {
   position: relative;
@@ -46,7 +52,9 @@ body {
   transform: translateY(0);
   pointer-events: all;
 }
-.sliders button {
+.sliders button,
+.close-save,
+.close-library {
   position: absolute;
   top: 0;
   right: 0;
@@ -63,7 +71,7 @@ body {
   flex-direction: column;
 }
 .panel {
-  height: 10vh;
+  height: 20vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -81,14 +89,19 @@ body {
 .panel p {
   font-size: 1.2rem;
 }
+.library-panel,
+.generate-panel,
+.save-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .adjust,
 .lock {
   margin: 2rem 0;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  color: rgb(31, 33, 63);
-  font-size: 1rem;
-  background: white;
+  border: none;
+  font-size: 1.5rem;
+  background: none;
   cursor: pointer;
 }
 input[type="range"] {
