@@ -32,6 +32,14 @@ adjustButtons.forEach((adjustButton, index) => {
   });
 });
 
+lockButtons.forEach((lockButton, index) => {
+  lockButton.addEventListener("click", () => {
+    lockButton.children[0].classList.toggle("fa-lock-open");
+    lockButton.children[0].classList.toggle("fa-lock");
+    colorDivs[index].classList.toggle("locked");
+  });
+});
+
 function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
@@ -48,11 +56,17 @@ function randomColors() {
     const brightness = sliders[1];
     const saturation = sliders[2];
     const icons = colorDivs[index].querySelectorAll(".controls button");
+    if (div.classList.contains("locked")) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      initialColors.push(chroma(randomColor).hex());
+    }
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
     checkTextContrast(randomColor, hexText);
     colorizeSliders(color, hue, brightness, saturation);
-    initialColors.push(chroma(randomColor).hex());
+
     for (icon of icons) {
       checkTextContrast(color, icon);
     }
