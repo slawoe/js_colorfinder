@@ -29,12 +29,16 @@ function randomColors() {
     const hue = sliders[0];
     const brightness = sliders[1];
     const saturation = sliders[2];
+    const adjustingDiv = colorDivs[index];
+    const icons = adjustingDiv.querySelectorAll(".controls button");
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
     checkTextContrast(randomColor, hexText);
     colorizeSliders(color, hue, brightness, saturation);
     initialColors.push(chroma(randomColor).hex());
-    console.log(initialColors);
+    for (icon of icons) {
+      checkTextContrast(color, icon);
+    }
   });
 }
 
