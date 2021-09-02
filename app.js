@@ -3,7 +3,11 @@ const generateButton = document.querySelector(".generate");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
 const copyPopup = document.querySelector(".copy-container");
-let initialColors;
+const adjustButtons = document.querySelectorAll(".adjust");
+const sliderContainers = document.querySelectorAll(".sliders");
+let initialColors = [];
+
+console.log(sliderContainers);
 
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -21,13 +25,19 @@ currentHexes.forEach((hex) => {
   });
 });
 
+adjustButtons.forEach((adjustButton, index) => {
+  adjustButton.addEventListener("click", () => {
+    openAdjustmentPanel(index);
+    console.log("TaDa");
+  });
+});
+
 function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
 }
 
 function randomColors() {
-  initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
@@ -118,7 +128,14 @@ function poppingUp(popup) {
   popup.classList.add("active");
   setTimeout(() => {
     popup.classList.remove("active");
-  }, 500);
+  }, 750);
+}
+
+function openAdjustmentPanel(index) {
+  sliderContainers[index].classList.toggle("active");
+  sliderContainers[index].children[0].addEventListener("click", (e) => {
+    sliderContainers[index].classList.remove("active");
+  });
 }
 
 randomColors();
