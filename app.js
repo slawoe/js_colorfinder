@@ -4,10 +4,11 @@ const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
 const copyPopup = document.querySelector(".copy-container");
 const adjustButtons = document.querySelectorAll(".adjust");
+const lockButtons = document.querySelectorAll(".lock");
 const sliderContainers = document.querySelectorAll(".sliders");
-let initialColors = [];
+let initialColors;
 
-console.log(sliderContainers);
+generateButton.addEventListener("click", randomColors);
 
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -28,7 +29,6 @@ currentHexes.forEach((hex) => {
 adjustButtons.forEach((adjustButton, index) => {
   adjustButton.addEventListener("click", () => {
     openAdjustmentPanel(index);
-    console.log("TaDa");
   });
 });
 
@@ -38,6 +38,7 @@ function generateHex() {
 }
 
 function randomColors() {
+  initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
@@ -46,8 +47,7 @@ function randomColors() {
     const hue = sliders[0];
     const brightness = sliders[1];
     const saturation = sliders[2];
-    const adjustingDiv = colorDivs[index];
-    const icons = adjustingDiv.querySelectorAll(".controls button");
+    const icons = colorDivs[index].querySelectorAll(".controls button");
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
     checkTextContrast(randomColor, hexText);
