@@ -60,6 +60,9 @@ function colorizeSliders(color, hue, brightness, saturation) {
     0
   )},${scaleBrightness(0.5)}, ${scaleBrightness(1)})`;
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204, 75, 75), rgb(204, 204, 75), rgb(75, 204, 75), rgb(75, 204, 204), rgb(75, 75, 204), rgb(204, 75, 204), rgb(204, 75, 75))`;
+  saturation.value = color.hsl()[1];
+  brightness.value = color.hsl()[2];
+  hue.value = color.hsl()[0];
 }
 
 function hslControls(e) {
@@ -79,6 +82,7 @@ function hslControls(e) {
     .set("hsl.l", brightness.value)
     .set("hsl.h", hue.value);
   colorDivs[index].style.backgroundColor = color;
+  colorizeSliders(color, hue, brightness, saturation);
 }
 
 function updateTextUI(index) {
