@@ -18,7 +18,9 @@ function generateHex() {
   const hexColor = chroma.random();
   return hexColor;
 }
+
 function randomColors() {
+  initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
@@ -31,6 +33,8 @@ function randomColors() {
     hexText.innerText = randomColor;
     checkTextContrast(randomColor, hexText);
     colorizeSliders(color, hue, brightness, saturation);
+    initialColors.push(chroma(randomColor).hex());
+    console.log(initialColors);
   });
 }
 
@@ -65,7 +69,7 @@ function hslControls(e) {
   const hue = sliders[0];
   const brightness = sliders[1];
   const saturation = sliders[2];
-  const bgColor = colorDivs[index].querySelector("h2").innerText;
+  const bgColor = initialColors[index];
   const color = chroma(bgColor)
     .set("hsl.s", saturation.value)
     .set("hsl.l", brightness.value)
