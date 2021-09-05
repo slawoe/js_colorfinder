@@ -6,7 +6,7 @@ You can visit the page here: [**Click me**](https://slawoe.github.io/js_colorfin
 
 ---
 
-### Example Screenshot
+### Example Screenshots
 
 ![Screenshot](./screenshots/screenshot1.png)
 ![Screenshot2](./screenshots/screenshot2.png)
